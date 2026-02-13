@@ -1,20 +1,20 @@
 public class Account {
-    private String accountNumber;
-    private Double balance;
-    private AccountState accountState;
+    public String accountNumber;
+    public Double balance;
+    public AccountState accountState;
 
     public Account(String accountNumber, Double balance) {
         this.accountNumber = accountNumber;
         this.balance = balance;
-        this.accountState = new ActiveState(); // default state
+        this.accountState = new ActiveState(this);
     }
 
     public void deposit(Double depositAmount) {
-
+        accountState.deposit(depositAmount);
     }
 
     public void withdraw(Double withdrawAmount) {
-
+        accountState.withdraw(withdrawAmount);
     }
 
     public void activate() {
@@ -28,9 +28,4 @@ public class Account {
     public void close() {
         accountState.close();
     }
-
-    public String toString() {
-        
-    }
-
 }

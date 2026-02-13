@@ -7,18 +7,20 @@ public class SuspendedState implements AccountState {
 
     @Override
     public void deposit(Double depositAmount) {
-        account.balance += depositAmount;
+        System.out.println("You cannot deposit on a suspended account!");
+        System.out.println(toString());
     }
 
     @Override
     public void withdraw(Double withdrawAmount) {
-        account.balance -= withdrawAmount;
+        System.out.println("You cannot withdraw on a suspended account!");
+        System.out.println(toString());
     }
 
     @Override
     public void activate() {
         System.out.println("Account is activated!");
-        account.accountState = new ActiveState();
+        account.accountState = new ActiveState(account);
     }
 
     @Override
@@ -29,7 +31,7 @@ public class SuspendedState implements AccountState {
     @Override
     public void close() {
         System.out.println("Account is closed!");
-        account.accountState = new ClosedState();
+        account.accountState = new ClosedState(account);
     }
 
     @Override
